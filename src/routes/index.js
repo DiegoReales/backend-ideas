@@ -9,7 +9,8 @@ module.exports = function ({
   HomeRoutes, 
   UserRoutes, 
   IdeaRoutes, 
-  CommentRoutes 
+  CommentRoutes,
+  AuthRoutes 
 }) {
   const router = express.Router();
   const apiRoutes = express.Router();
@@ -20,6 +21,7 @@ module.exports = function ({
     .use(helmet())
     .use(compression());
   
+  apiRoutes.use('/auth', AuthRoutes);
   apiRoutes.use('/home', HomeRoutes);
   apiRoutes.use('/user', UserRoutes);
   apiRoutes.use('/idea', IdeaRoutes);
