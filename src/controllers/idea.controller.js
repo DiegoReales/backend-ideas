@@ -11,13 +11,14 @@ class IdeaController {
   }
 
   async getAll(req, res) {
-    const users = await _ideaService.getAll();
+    const { pageSize, pageNum } = req.query;
+    const users = await _ideaService.getAll(pageSize, pageNum);
     return res.send(users);
   }
 
   async create(req, res) {
     const { body } = req;
-    const createdIdea = _ideaService.create(body);
+    const createdIdea = await _ideaService.create(body);
     return res.status(201).send(createdIdea);
   }
   

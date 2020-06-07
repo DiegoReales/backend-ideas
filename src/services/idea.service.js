@@ -16,18 +16,18 @@ class IdeaService extends BaseService {
 
   async upvoteIdea(ideaId) {
     if (!ideaId) throw new CustomError(400, "ideaId debe ser enviado");
-    const idea = await _ideaRepository.get(id);
+    const idea = await _ideaRepository.get(ideaId);
     if (!idea) throw new CustomError(400, "Idea no existe");
     idea.upvotes.push(true);
     return await _ideaRepository.update(ideaId, { upvotes: idea.upvotes });
   }
 
-  async upvoteIdea(ideaId) {
+  async downvoteIdea(ideaId) {
     if (!ideaId) throw new CustomError(400, "ideaId debe ser enviado");
-    const idea = await _ideaRepository.get(id);
+    const idea = await _ideaRepository.get(ideaId);
     if (!idea) throw new CustomError(400, "Idea no existe");
     idea.downvotes.push(true);
-    return await _ideaRepository.update(ideaId, { upvotes: idea.downvotes });
+    return await _ideaRepository.update(ideaId, { downvotes: idea.downvotes });
   }
 }
 
